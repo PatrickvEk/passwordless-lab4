@@ -4,16 +4,17 @@ using System.Data.SqlClient;
 
 namespace KeyVaultProvider
 {
-    public class KeyVaultConnectonStringFactory : IConnectionStringFactory
+    public class KeyVaultConnectionStringFactory : IConnectionStringFactory
     {
         private readonly string _secretUri;
+        public string ConnectionStringNameSuffix { get; set; } = String.Empty;
 
-        public KeyVaultConnectonStringFactory()
+        public KeyVaultConnectionStringFactory()
         : this(SecretUriViaSettings)
         {
         }
 
-        public KeyVaultConnectonStringFactory(string secretUri)
+        public KeyVaultConnectionStringFactory(string secretUri)
         {
             _secretUri = secretUri;
         }
@@ -35,7 +36,8 @@ namespace KeyVaultProvider
 
         public string CreateConnectionString(string connectionStringName)
         {
-            string settingName = $"{connectionStringName}_KeyVault";
+            string settingName = connectionStringName + ConnectionStringNameSuffix;
+
             string connectionStringFromSettings = ConfigurationManager.ConnectionStrings[settingName].ToString();
 
             bool connectionStringFound = connectionStringFromSettings != null;

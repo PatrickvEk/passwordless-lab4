@@ -62,7 +62,7 @@
     <Compile Include="CertificateHelper.cs" />
     <Compile Include="IConnectionStringFactory.cs" />
     <Compile Include="KeyVaultAuthenticationHandler.cs" />
-    <Compile Include="KeyVaultConnectonStringFactory.cs" />
+    <Compile Include="KeyVaultConnectionStringFactory.cs" />
     <Compile Include="KeyVaultService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,16 +7,16 @@ namespace KeyVaultConnectionProvider
 {
     public class KeyVaultConnectionFactory : IDbConnectionFactory
     {
+        public const string ConnectionStringNameSuffix = "_KeyVault";
+
         private readonly IConnectionStringFactory _connectionStringFactory;
 
         public KeyVaultConnectionFactory()
         {
-            _connectionStringFactory = new KeyVaultConnectonStringFactory();
-        }
-
-        public KeyVaultConnectionFactory(string secretUri)
-        {
-            _connectionStringFactory = new KeyVaultConnectonStringFactory(secretUri);
+            _connectionStringFactory = new KeyVaultConnectionStringFactory()
+            {
+                ConnectionStringNameSuffix = ConnectionStringNameSuffix
+            };
         }
 
         public DbConnection CreateConnection(string connectionStringName)

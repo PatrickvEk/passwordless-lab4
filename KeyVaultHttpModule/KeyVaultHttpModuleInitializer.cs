@@ -1,40 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Web;
+using KeyVaultProvider;
 
 namespace KeyVaultHttpModule
 {
     public class KeyVaultHttpModuleInitializer : IHttpModule
     {
-        protected internal const int LoginFailedErrorNumber = 18456;
-        //private readonly IConnectionStringFactory _connectionStringFactory;
+        private const int LoginFailedErrorNumber = 18456;
+        private const string ConnectionStringName = "ConnectionStringName";
+
+        private readonly KeyVaultConnectionStringFactory _connectionStringFactory;
 
         public KeyVaultHttpModuleInitializer()
         {
-            //_connectionStringFactory = new KeyVaultConnectonStringFactory();
+            _connectionStringFactory = new KeyVaultConnectionStringFactory();
         }
 
         // In the Init function, register for HttpApplication 
         // events by adding your handlers.
         public void Init(HttpApplication application)
         {
-           // var dbTarget = LogManager.Configuration.AllTargets.OfType<DatabaseTarget>().FirstOrDefault();
-            //bool hasDbTarget = dbTarget != null;
-            //if (hasDbTarget)
-            {
-                //string connectionName = dbTarget.Name;
-                //string logginConnectionString = _connectionStringFactory.CreateConnectionString("SchoolContext");
-               // var layout = new SimpleLayout(logginConnectionString);
-               // dbTarget.ConnectionString = layout;
+            //todo: make setting
+            SetConnectionString();
 
-                //LogManager.ReconfigExistingLoggers();
-            }
-
+            // for demo-purposes only
             application.Error += ApplicationOnError;
+        }
+
+        private void SetConnectionString()
+        {
+            string connectionStringName = ConfigurationManager.AppSettings[ConnectionStringName];
+            string value = _connectionStringFactory.CreateConnectionString(connectionStringName);
+
+            SetConnectionString(connectionStringName, value);
+        }
+
+        private void SetConnectionString(string connectionStringName, string value)
+        {
+            ConnectionStringSettings connectionStringSetting = ConfigurationManager.ConnectionStrings[connectionStringName];
+            connectionStringSetting.SetConnectionString(value);
         }
 
         private void ApplicationOnError(object sender, EventArgs e)
@@ -43,7 +50,15 @@ namespace KeyVaultHttpModule
 
             if (lastException is SqlException lastSqlError && lastSqlError.Number == LoginFailedErrorNumber)
             {
-
+                try
+                {
+                    SetConnectionString();
+                }
+                catch (Exception exception)
+                {
+                    // ignore
+                    Debug.WriteLine(exception);
+                }
             }
         }
 
