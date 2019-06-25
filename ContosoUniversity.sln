@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContosoUniversity", "ContosoUniversity\ContosoUniversity.csproj", "{264E21D6-4024-4A53-B1BE-1CD42F3348FE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{97F02764-40AC-485C-B531-0F48008CFC07} = {97F02764-40AC-485C-B531-0F48008CFC07}
+		{E9A40ABA-5DBD-4F10-8376-4C6AC7BBFA1F} = {E9A40ABA-5DBD-4F10-8376-4C6AC7BBFA1F}
+		{AF7A56E8-0B07-4221-B41A-D88A13EAA58A} = {AF7A56E8-0B07-4221-B41A-D88A13EAA58A}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{BA324694-07F7-4D59-868A-AA10BAC225CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyVaultHttpModule", "KeyVaultHttpModule\KeyVaultHttpModule.csproj", "{97F02764-40AC-485C-B531-0F48008CFC07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyVaultProvider", "KeyVaultProvider\KeyVaultProvider.csproj", "{AF7A56E8-0B07-4221-B41A-D88A13EAA58A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyVaultConnectionProvider", "KeyVaultConnectionFactory\KeyVaultConnectionProvider.csproj", "{E9A40ABA-5DBD-4F10-8376-4C6AC7BBFA1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{264E21D6-4024-4A53-B1BE-1CD42F3348FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{264E21D6-4024-4A53-B1BE-1CD42F3348FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{264E21D6-4024-4A53-B1BE-1CD42F3348FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{264E21D6-4024-4A53-B1BE-1CD42F3348FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97F02764-40AC-485C-B531-0F48008CFC07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97F02764-40AC-485C-B531-0F48008CFC07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97F02764-40AC-485C-B531-0F48008CFC07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97F02764-40AC-485C-B531-0F48008CFC07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF7A56E8-0B07-4221-B41A-D88A13EAA58A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF7A56E8-0B07-4221-B41A-D88A13EAA58A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF7A56E8-0B07-4221-B41A-D88A13EAA58A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF7A56E8-0B07-4221-B41A-D88A13EAA58A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A40ABA-5DBD-4F10-8376-4C6AC7BBFA1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A40ABA-5DBD-4F10-8376-4C6AC7BBFA1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A40ABA-5DBD-4F10-8376-4C6AC7BBFA1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A40ABA-5DBD-4F10-8376-4C6AC7BBFA1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E361436-C5D5-46D2-9581-B8335263A6AA}
+	EndGlobalSection
+EndGlobal
