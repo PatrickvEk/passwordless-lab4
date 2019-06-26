@@ -7,7 +7,7 @@ namespace KeyVaultProvider
     public class KeyVaultConnectionStringFactory : IConnectionStringFactory
     {
         private readonly string _secretUri;
-        public string ConnectionStringNameSuffix { get; set; } = String.Empty;
+        public string ConnectionStringNameSuffix { get; set; } = string.Empty;
 
         public KeyVaultConnectionStringFactory()
         : this(SecretUriViaSettings)
@@ -27,7 +27,7 @@ namespace KeyVaultProvider
 
                 if (secretUri == null)
                 {
-                    throw new ArgumentException("SecretUri", "SecretUri must be set via config (web.config/app.config)");
+                    throw new InvalidOperationException("SecretUri must be set via config (web.config/app.config)");
                 }
 
                 return secretUri;
@@ -36,9 +36,16 @@ namespace KeyVaultProvider
 
         public string CreateConnectionString(string connectionStringName)
         {
+            string connectionStringWithCreds = ConnectionStringWithCreds(connectionStringName);
+
+            return connectionStringWithCreds;
+        }
+
+        private string ConnectionStringWithCreds(string connectionStringName)
+        {
             string settingName = connectionStringName + ConnectionStringNameSuffix;
 
-            string connectionStringFromSettings = ConfigurationManager.ConnectionStrings[settingName].ToString();
+            ConnectionStringSettings connectionStringFromSettings = ConfigurationManager.ConnectionStrings[settingName];
 
             bool connectionStringFound = connectionStringFromSettings != null;
             if (!connectionStringFound)
@@ -46,14 +53,15 @@ namespace KeyVaultProvider
                 throw new InvalidOperationException($"AppSetting '{settingName}' not found.");
             }
 
-            string connectionStringWithCreds = AddCredentialsToConnectionString(connectionStringFromSettings);
-
+            string connectionStringWithCreds = AddCredentialsToConnectionString(connectionStringFromSettings.ConnectionString);
             return connectionStringWithCreds;
         }
+
 
         private string AddCredentialsToConnectionString(string connectionString)
         {
             SqlConnectionStringBuilder builder = new SqlConnectionStringBuilder(connectionString);
+
             builder.Password = KeyVaultService.GetPassword(_secretUri);
             string builderConnectionString = builder.ConnectionString;
             return builderConnectionString;

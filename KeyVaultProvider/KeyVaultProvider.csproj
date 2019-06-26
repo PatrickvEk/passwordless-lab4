@@ -59,7 +59,9 @@
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CachedConnectionStringFactory.cs" />
     <Compile Include="CertificateHelper.cs" />
+    <Compile Include="ICachedConnectionStringFactory.cs" />
     <Compile Include="IConnectionStringFactory.cs" />
     <Compile Include="KeyVaultAuthenticationHandler.cs" />
     <Compile Include="KeyVaultConnectionStringFactory.cs" />

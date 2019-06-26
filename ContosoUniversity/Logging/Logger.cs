@@ -64,7 +64,7 @@ namespace ContosoUniversity.Logging
         public void TraceApi(string componentName, string method, TimeSpan timespan, string properties)
         {
             string message = String.Concat("Component:", componentName, ";Method:", method, ";Timespan:", timespan.ToString(), ";Properties:", properties);
-            Trace.TraceInformation(message);
+            //Trace.TraceInformation(message);
         }
 
         private static string FormatExceptionMessage(Exception exception, string fmt, object[] vars)

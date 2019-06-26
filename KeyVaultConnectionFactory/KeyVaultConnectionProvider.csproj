@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="KeyVaultConnectionFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RetrySqlInvalidPasswordStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
