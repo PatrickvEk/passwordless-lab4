@@ -192,3 +192,5 @@ You have now learned how to to use your **on-prem app in conjuction with Azure K
 
 If your application isn't using EntityFramework or uses another storage system you can use the HttpModule to alter the settings in memory before the application starts. Through this way you can still use KeyVault in conjunction with your application. You might need to restart the app after a key-rotation though.
 
+We made a dependency from the webapp to the keyvault modules for easy running and debugging, in a productionsituation you wouldn't need these dependencies.
+
