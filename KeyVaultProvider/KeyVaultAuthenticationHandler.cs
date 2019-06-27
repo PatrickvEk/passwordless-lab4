@@ -49,6 +49,12 @@ namespace KeyVaultProvider
         private static ClientAssertionCertificate GetAuthenticationCertificate()
         {
             X509Certificate2 clientCert = CertificateHelper.FindCertificate(ClientCertificateName);
+
+            if (clientCert == null)
+            {
+                throw new InvalidOperationException($"ClientCertificateName '{ClientCertificateName}' cannot be found in certificate storage");
+            }
+
             var authenticationCertificate = new ClientAssertionCertificate(ClientId, clientCert);
 
             return authenticationCertificate;

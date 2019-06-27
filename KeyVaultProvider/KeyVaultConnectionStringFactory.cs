@@ -50,7 +50,7 @@ namespace KeyVaultProvider
             bool connectionStringFound = connectionStringFromSettings != null;
             if (!connectionStringFound)
             {
-                throw new InvalidOperationException($"AppSetting '{settingName}' not found.");
+                throw new InvalidOperationException($"ConnectionString '{settingName}' in settings not found.");
             }
 
             string connectionStringWithCreds = AddCredentialsToConnectionString(connectionStringFromSettings.ConnectionString);

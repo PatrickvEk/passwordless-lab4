@@ -2,6 +2,7 @@
 using System.Configuration;
 using System.Data.Common;
 using System.Data.Entity.Infrastructure;
+using System.Diagnostics;
 using KeyVaultProvider;
 
 namespace KeyVaultConnectionProvider
@@ -31,6 +32,7 @@ namespace KeyVaultConnectionProvider
         public void FailedConnectionAttempt(Exception lastException)
         {
             _connectionStringFactory.IsDirty = true;
+            Debug.WriteLine("FAILED ATTEMPT");
         }
 
         public DbConnection CreateConnection(string connectionStringName)

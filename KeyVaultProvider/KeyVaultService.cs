@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Microsoft.Azure.KeyVault;
 using Microsoft.Azure.KeyVault.Models;
 
@@ -8,8 +10,24 @@ namespace KeyVaultProvider
     {
         public static string GetPassword(string secretUri)
         {
-            string plainPassword = Task.Run(() => GetPasswordAsync(secretUri)).GetAwaiter().GetResult(); //run sync
-            return plainPassword;
+            try
+            {
+                string plainPassword = Task.Run(() => GetPasswordAsync(secretUri)).GetAwaiter().GetResult(); //run sync
+                return plainPassword;
+            }
+            catch (KeyVaultErrorException)
+            {
+                // does technically nothing, just helping the meetup-user
+
+                if (Debugger.IsAttached)
+                {
+                    // if you reach here, your secretUri is probably wrong. Especially if it is a 'NotFound' error.
+
+                    Debugger.Break();
+                }
+
+                throw;
+            }
         }
 
         public static async Task<string> GetPasswordAsync(string secretUri)
